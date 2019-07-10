@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "mast-app": {
+    "warehouse-search-client": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/mast-app",
+            "outputPath": "dist/warehouse-search-client",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
             "scripts": []
           },
@@ -62,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "mast-app:build"
+            "browserTarget": "warehouse-search-client:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "mast-app:build:production"
+              "browserTarget": "warehouse-search-client:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "mast-app:build"
+            "browserTarget": "warehouse-search-client:build"
           }
         },
         "test": {
@@ -110,15 +111,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "mast-app:serve"
+            "devServerTarget": "warehouse-search-client:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "mast-app:serve:production"
+              "devServerTarget": "warehouse-search-client:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "mast-app"
+  "defaultProject": "warehouse-search-client"
 }

@@ -1,0 +1,37 @@
+<div class="form-container">
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+    <mat-card>
+      <mat-card-title>{{ title }}</mat-card-title>
+
+      <mat-card-content>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="Username" formControlName="userName">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!registrationForm.valid" type="submit" mat-button>Register</button>
+      </mat-card-actions>
+
+    </mat-card>
+  </form>
+</div>
