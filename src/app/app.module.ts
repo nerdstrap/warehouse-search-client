@@ -10,6 +10,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CustomMaterialModule } from "./material.module";
 import { AppRoutingModule } from './app-routing.module';
 import { AuthHttpInterceptor } from './shared/interceptors';
+import { XHiddenDirective } from './shared/directives/xhidden.directive';
+import { XDisabledDirective } from './shared/directives/xdisabled.directive';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RegistrationFormComponent } from './registration-form/registration-form.component';
 import { LoginFormComponent } from './login-form/login-form.component';
@@ -20,6 +22,8 @@ import { ConfigService } from './shared/utils';
 @NgModule({
   declarations: [
     AppComponent,
+    XHiddenDirective,
+    XDisabledDirective,
     NavbarComponent,
     FileSelectDirective,
     FileDropDirective,
@@ -36,6 +40,10 @@ import { ConfigService } from './shared/utils';
     HttpClientModule,
     CustomMaterialModule,
     BrowserAnimationsModule
+  ],
+  exports: [
+    XHiddenDirective,
+    XDisabledDirective
   ],
   providers: [ConfigService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthHttpInterceptor, multi: true }

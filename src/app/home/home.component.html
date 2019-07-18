@@ -6,11 +6,22 @@
     </mat-card-title>
 
     <mat-card-content>
-      
+
     </mat-card-content>
 
     <mat-card-actions>
-      <a mat-raised-button color="primary" routerLink="/warehouse-search">Go To Search</a>
+      <div [xdisabled]="admin">
+        <a mat-raised-button color="primary" routerLink="/warehouse-search">Admin Disabled</a>
+      </div>
+      <div [xhidden]="admin">
+        <a mat-raised-button color="primary" routerLink="/warehouse-search">Admin Hidden</a>
+      </div>
+      <div [xdisabled]="omni">
+        <a mat-raised-button color="primary" routerLink="/warehouse-search">Omni Disabled</a>
+      </div>
+      <div [xhidden]="omni">
+        <a mat-raised-button color="primary" routerLink="/warehouse-search">Omni Hidden</a>
+      </div>
     </mat-card-actions>
 
   </mat-card>

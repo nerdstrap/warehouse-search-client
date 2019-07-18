@@ -12,7 +12,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationFormComponent },
   { path: 'login', component: LoginFormComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'warehouse-search', component: WarehouseSearchComponent, canActivate: [AuthGuard] }
+  { path: 'warehouse-search', component: WarehouseSearchComponent, canActivate: [AuthGuard], data: { roles: ['admin', 'superuser'] } }
 ];
 
 @NgModule({

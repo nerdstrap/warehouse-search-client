@@ -1,4 +1,9 @@
+import { Token } from './token.interface';
+
 export interface User {
-    accessToken: string;
-    refreshToken: string;
+    id: string;
+    userName: string;
+    accessToken: Token;
+    refreshToken: Token;
+    roles: string[];
 }

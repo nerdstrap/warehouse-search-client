@@ -31,7 +31,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
     private addAuthorizationHeader(request: HttpRequest<any>, accessToken: string) {
         return request.clone({
             setHeaders: {
-                'Authorization': `Bearer ${accessToken}`
+                Authorization: `Bearer ${accessToken}`
             }
         });
     }
@@ -45,7 +45,7 @@ export class AuthHttpInterceptor implements HttpInterceptor {
                 switchMap((token: Tokens) => {
                     this.isRefreshing = false;
                     this.refreshTokenSubject.next(token.accessToken);
-                    return next.handle(this.addAuthorizationHeader(request, token.accessToken));
+                    return next.handle(this.addAuthorizationHeader(request, token.accessToken.token));
                 }));
 
         } else {
