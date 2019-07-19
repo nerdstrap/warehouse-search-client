@@ -10,18 +10,8 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <div [xdisabled]="admin">
-        <a mat-raised-button color="primary" routerLink="/warehouse-search">Admin Disabled</a>
-      </div>
-      <div [xhidden]="admin">
-        <a mat-raised-button color="primary" routerLink="/warehouse-search">Admin Hidden</a>
-      </div>
-      <div [xdisabled]="omni">
-        <a mat-raised-button color="primary" routerLink="/warehouse-search">Omni Disabled</a>
-      </div>
-      <div [xhidden]="omni">
-        <a mat-raised-button color="primary" routerLink="/warehouse-search">Omni Hidden</a>
-      </div>
+        <button mat-raised-button color="primary" routerLink="/warehouse-search" [disabled]="!isAdmin">!isAdmin = Disabled</button>
+        <button mat-raised-button color="primary" routerLink="/warehouse-search" *ngIf="isAdmin">isAdmin = Visible</button>
     </mat-card-actions>
 
   </mat-card>

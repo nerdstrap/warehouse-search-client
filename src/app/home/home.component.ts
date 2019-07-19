@@ -10,20 +10,17 @@ export class HomeComponent implements OnInit {
   title = 'Home';
   loading = false;
   currentUser: User;
-  userFromApi: User;
+  isAdmin: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService,
-    private userService: UserService) {
+    private authService: AuthService) {
     this.currentUser = this.authService.currentUserValue;
+    this.isAdmin = this.authService.isAdmin;
   }
 
   ngOnInit() {
-    this.userService.getMe().pipe(first()).subscribe(user => {
-      this.userFromApi = user;
-    });
   }
 
 }

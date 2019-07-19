@@ -17,8 +17,8 @@ export class UserService extends BaseService {
     this.baseApiUrl = configService.getApiUri();
   }
 
-  getMe() {
-    return this.http.get<any>(`${this.baseApiUrl}/user/me`)
+  getMe(id: string) {
+    return this.http.get<any>(`${this.baseApiUrl}/user/${id}`)
       .pipe(map(data => data.value));
   }
 }

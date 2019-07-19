@@ -5,7 +5,6 @@ import { catchError, mapTo, tap } from 'rxjs/operators';
 import { ConfigService } from '../utils';
 import { Tokens, User } from '../models';
 import { BaseService } from './base.service';
-import * as jwt_decode from 'jwt-decode';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService extends BaseService {
@@ -58,40 +57,31 @@ export class AuthService extends BaseService {
     }
 
     logout() {
-        return this.http.post<any>(`${this.baseApiUrl}/auth/logout`, {
-            refreshToken: this.getRefreshToken()
-        }).pipe(
-            tap(() => this.doLogoutUser()),
-            mapTo(true),
-            catchError(error => {
-                alert(error.error);
-                return of(false);
-            }));
+        localStorage.removeItem('currentUser');
+        this.removeTokens();
+        this.currentUserSubject.next(null);
     }
 
     isLoggedIn() {
         return !!this.getAccessToken();
     }
 
-    isInRole(role: string) {
+    private isInRole(role: string) : boolean {
         return this.currentUserValue && this.currentUserValue.roles && this.currentUserValue.roles.indexOf(role) >= 0;
     }
+
+    get isAdmin() : boolean {
+        return this.isInRole('admin');
+      }
 
     getAccessToken() {
         return localStorage.getItem(this.ACCESS_TOKEN);
     }
 
     private doLoginUser(currentUser: User) {
-        var stuff = jwt_decode(currentUser.accessToken.token);
         localStorage.setItem('currentUser', JSON.stringify(currentUser));
         this.storeTokens(currentUser);
         this.currentUserSubject.next(currentUser);
-    }
-
-    private doLogoutUser() {
-        localStorage.removeItem('currentUser');
-        this.removeTokens();
-        this.currentUserSubject.next(null);
     }
 
     private getRefreshToken() {
